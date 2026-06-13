@@ -1,8 +1,8 @@
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from groq import Groq
-import streamlit as st
 
+import os
 
 
 def get_ans(que , embeddings):
@@ -26,7 +26,7 @@ def get_ans(que , embeddings):
 
 
     #sending hte data to grok
-    client = Groq(api_key = "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")
+    client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
     response = client.chat.completions.create(
        model = "llama-3.3-70b-versatile",
         messages=[
